@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import PopupModal from '../components/PopupModal';
 
 export default function Penelitian() {
   const [selectedService, setSelectedService] = useState('penelitian');
@@ -17,17 +18,70 @@ export default function Penelitian() {
     window.scrollTo(0, 0);
   }, []);
 
+  const [popupConfig, setPopupConfig] = useState({ isOpen: false, type: 'success', title: '', message: '' });
+
+  const closePopup = () => setPopupConfig({ ...popupConfig, isOpen: false });
+
   const handleCekStatus = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const jenisLayanan = formData.get('jenisLayanan');
     
-    // Asumsikan navigasi ke halaman submit masing-masing
-    // Bisa juga dialihkan ke halaman lacak khusus jika sudah ada
     if (jenisLayanan === 'penelitian') {
-      navigate('/submit-penelitian');
+      const rand = Math.random();
+      if (rand < 0.33) {
+        setPopupConfig({
+          isOpen: true,
+          type: 'success',
+          title: 'Permohonan Diterima',
+          message: 'Status Pengajuan Penelitian: Telah Disetujui!\n\nSurat balasan (izin penelitian) sudah dikirimkan melalui alamat email yang Anda daftarkan.'
+        });
+      } else if (rand < 0.66) {
+        setPopupConfig({
+          isOpen: true,
+          type: 'process',
+          title: 'Sedang Diproses',
+          message: 'Status Pengajuan Penelitian: Sedang dalam proses review oleh Tim Diskominfo Kota Bogor.\n\nMohon menunggu 1-3 hari kerja.'
+        });
+      } else {
+        setPopupConfig({
+          isOpen: true,
+          type: 'not-found',
+          title: 'Tiket Tidak Ditemukan',
+          message: 'Maaf, nomor tiket yang Anda masukkan tidak valid atau tidak ditemukan dalam sistem kami.'
+        });
+      }
     } else if (jenisLayanan === 'magang') {
-      navigate('/magang');
+      const rand = Math.random();
+      if (rand < 0.25) {
+        setPopupConfig({
+          isOpen: true,
+          type: 'process',
+          title: 'Sedang Diproses',
+          message: 'Status Pengajuan Magang: Sedang dalam proses review oleh Tim SDM Diskominfo Kota Bogor.\n\nMohon menunggu informasi selanjutnya.'
+        });
+      } else if (rand < 0.5) {
+        setPopupConfig({
+          isOpen: true,
+          type: 'success',
+          title: 'Permohonan Diterima',
+          message: 'Selamat, permohonan magang Anda telah Disetujui!\n\nSurat balasan (penerimaan magang) sudah dikirimkan melalui alamat email Anda.'
+        });
+      } else if (rand < 0.75) {
+        setPopupConfig({
+          isOpen: true,
+          type: 'error',
+          title: 'Permohonan Ditolak',
+          message: 'Maaf, permohonan magang Anda saat ini belum dapat kami terima.\n\nAlasan penolakan telah dikirimkan secara detail melalui alamat email Anda.'
+        });
+      } else {
+        setPopupConfig({
+          isOpen: true,
+          type: 'not-found',
+          title: 'Tiket Tidak Ditemukan',
+          message: 'Maaf, nomor tiket yang Anda masukkan tidak valid atau tidak ditemukan dalam sistem kami.'
+        });
+      }
     }
   };
 
@@ -522,6 +576,13 @@ export default function Penelitian() {
         </div>
       </section>
     </div>
+      <PopupModal 
+        isOpen={popupConfig.isOpen}
+        onClose={closePopup}
+        type={popupConfig.type}
+        title={popupConfig.title}
+        message={popupConfig.message}
+      />
       <Footer />
     </>
   );

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import PopupModal from '../components/PopupModal';
 import { Search, Upload, FileText, CheckCircle, AlertCircle, BookOpen, FileCheck } from 'lucide-react';
 
 export default function SubmitPenelitian() {
@@ -9,6 +10,9 @@ export default function SubmitPenelitian() {
   }, []);
 
   const [activeTab, setActiveTab] = useState('pengajuan');
+  const [popupConfig, setPopupConfig] = useState({ isOpen: false, type: 'success', title: '', message: '' });
+
+  const closePopup = () => setPopupConfig({ ...popupConfig, isOpen: false });
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -75,7 +79,15 @@ export default function SubmitPenelitian() {
                     {/* Form Column */}
                     <div className="flex-1">
                       <h4 className="text-xl font-bold text-slate-800 mb-6">Formulir Pengajuan Permohonan Penelitian</h4>
-                      <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); alert("Pengajuan berhasil dikirim! Silakan periksa email Anda untuk Nomor Tiket."); }}>
+                      <form className="space-y-5" onSubmit={(e) => { 
+                        e.preventDefault(); 
+                        setPopupConfig({
+                          isOpen: true,
+                          type: 'success',
+                          title: 'Berhasil Dikirim!',
+                          message: 'Pengajuan Permohonan Penelitian Berhasil Dikirim!\n\nNomor Tiket Anda: TKT-RST-YYYYMM-XXXX\n\nSilakan simpan nomor tiket ini dan periksa email Anda secara berkala.'
+                        });
+                      }}>
                         
                         <div>
                           <label className="block text-sm font-bold text-slate-700 mb-2">Nama Lengkap</label>
@@ -181,7 +193,32 @@ export default function SubmitPenelitian() {
                         Silakan masukkan Nomor Tiket atau Email yang Anda daftarkan untuk melihat status permohonan terkini.
                       </p>
                       
-                      <form className="max-w-md mx-auto" onSubmit={(e) => { e.preventDefault(); alert("Status Pengajuan: Sedang dalam proses review."); }}>
+                      <form className="max-w-md mx-auto" onSubmit={(e) => { 
+                        e.preventDefault(); 
+                        const rand = Math.random();
+                        if (rand < 0.33) {
+                          setPopupConfig({
+                            isOpen: true,
+                            type: 'success',
+                            title: 'Permohonan Diterima',
+                            message: 'Status Pengajuan: Telah Disetujui!\n\nSurat balasan (izin penelitian) sudah dikirimkan melalui alamat email yang Anda daftarkan.'
+                          });
+                        } else if (rand < 0.66) {
+                          setPopupConfig({
+                            isOpen: true,
+                            type: 'process',
+                            title: 'Sedang Diproses',
+                            message: 'Status Pengajuan: Sedang dalam proses review oleh Tim Diskominfo Kota Bogor.\n\nMohon menunggu 1-3 hari kerja.'
+                          });
+                        } else {
+                          setPopupConfig({
+                            isOpen: true,
+                            type: 'not-found',
+                            title: 'Tiket Tidak Ditemukan',
+                            message: 'Maaf, nomor tiket yang Anda masukkan tidak valid atau tidak ditemukan dalam sistem kami.'
+                          });
+                        }
+                      }}>
                         <div className="mb-6">
                           <input type="text" className="w-full text-center text-xl font-bold tracking-widest bg-slate-50 border border-slate-200 rounded-xl px-4 py-4 text-slate-800 focus:outline-none focus:border-sky-500 focus:ring-4 focus:ring-sky-500/10 transition-all uppercase" placeholder="TKT-XXXXX / EMAIL" required />
                         </div>
@@ -213,7 +250,15 @@ export default function SubmitPenelitian() {
                       <h4 className="text-2xl font-bold text-slate-800 mb-3">Unggah Laporan Akhir / Jurnal</h4>
                       <p className="text-slate-500 mb-8">Sesuai peraturan, Anda wajib menyerahkan laporan hasil akhir penelitian setelah riset selesai dilakukan.</p>
                       
-                      <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); alert("Jurnal berhasil diunggah! Terima kasih telah melaporkan hasil penelitian Anda."); }}>
+                      <form className="space-y-6" onSubmit={(e) => { 
+                        e.preventDefault(); 
+                        setPopupConfig({
+                          isOpen: true,
+                          type: 'success',
+                          title: 'Jurnal Berhasil Diunggah!',
+                          message: 'Terima kasih telah melaporkan hasil akhir penelitian Anda. Data akan segera ditinjau oleh tim kami.'
+                        });
+                      }}>
                         <div>
                           <label className="block text-sm font-bold text-slate-700 mb-2">Nomor Tiket Pengajuan</label>
                           <input type="text" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-700 focus:outline-none focus:border-sky-500 focus:ring-4 focus:ring-sky-500/10 transition-all" required placeholder="Masukkan nomor tiket Anda" />
@@ -263,7 +308,32 @@ export default function SubmitPenelitian() {
                         Pastikan dokumen akhir Anda telah diverifikasi dan diterima dengan baik oleh tim Diskominfo Kota Bogor.
                       </p>
                       
-                      <form className="max-w-md mx-auto" onSubmit={(e) => { e.preventDefault(); alert("Status Jurnal: Menunggu peninjauan admin."); }}>
+                      <form className="max-w-md mx-auto" onSubmit={(e) => { 
+                        e.preventDefault(); 
+                        const rand = Math.random();
+                        if (rand < 0.33) {
+                          setPopupConfig({
+                            isOpen: true,
+                            type: 'success',
+                            title: 'Sudah Terverifikasi',
+                            message: 'Laporan/Jurnal akhir Anda telah diverifikasi and diterima dengan baik oleh tim Diskominfo Kota Bogor.'
+                          });
+                        } else if (rand < 0.66) {
+                          setPopupConfig({
+                            isOpen: true,
+                            type: 'process',
+                            title: 'Sedang Proses',
+                            message: 'Laporan/Jurnal Anda sedang dalam tahap peninjauan oleh admin kami.'
+                          });
+                        } else {
+                          setPopupConfig({
+                            isOpen: true,
+                            type: 'warning',
+                            title: 'Belum Diverifikasi',
+                            message: 'Laporan/Jurnal Anda belum diverifikasi atau terdapat kekurangan data.\n\nSilakan periksa email Anda secara berkala untuk revisi (jika ada).'
+                          });
+                        }
+                      }}>
                         <div className="mb-6">
                           <input type="text" className="w-full text-center text-xl font-bold tracking-widest bg-slate-50 border border-slate-200 rounded-xl px-4 py-4 text-slate-800 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition-all uppercase" placeholder="TKT-XXXXX" required />
                         </div>
@@ -292,6 +362,14 @@ export default function SubmitPenelitian() {
 
         </div>
       </div>
+
+      <PopupModal 
+        isOpen={popupConfig.isOpen}
+        onClose={closePopup}
+        type={popupConfig.type}
+        title={popupConfig.title}
+        message={popupConfig.message}
+      />
       <Footer />
     </>
   );

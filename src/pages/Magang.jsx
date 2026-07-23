@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import PopupModal from '../components/PopupModal';
 import { Send, Search, CheckCircle, Info, AlertCircle } from 'lucide-react';
 
 export default function Magang() {
@@ -9,6 +10,9 @@ export default function Magang() {
   }, []);
 
   const [activeTab, setActiveTab] = useState('pengajuan');
+  const [popupConfig, setPopupConfig] = useState({ isOpen: false, type: 'success', title: '', message: '' });
+
+  const closePopup = () => setPopupConfig({ ...popupConfig, isOpen: false });
 
   return (
     <>
@@ -58,7 +62,15 @@ export default function Magang() {
                         <p className="text-slate-500">Lengkapi data diri Anda dengan informasi yang valid dan sesuai dokumen.</p>
                       </div>
                       
-                      <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); alert("Pengajuan Terkirim! Mohon tunggu konfirmasi email."); }}>
+                      <form className="space-y-6" onSubmit={(e) => { 
+                        e.preventDefault(); 
+                        setPopupConfig({
+                          isOpen: true,
+                          type: 'success',
+                          title: 'Berhasil Dikirim!',
+                          message: 'Pengajuan Permohonan Magang Berhasil Dikirim!\n\nNomor Tiket Anda: TKT-MGG-YYYYMM-XXXX\n\nSilakan periksa email Anda secara berkala untuk memantau status persetujuan.'
+                        });
+                      }}>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div>
                             <label className="block text-sm font-bold text-slate-700 mb-2">Nama Lengkap</label>
@@ -76,9 +88,14 @@ export default function Magang() {
                             <label className="block text-sm font-bold text-slate-700 mb-2">Posisi Diminati</label>
                             <select className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-700 focus:outline-none focus:border-sky-500 focus:ring-4 focus:ring-sky-500/10 transition-all" required defaultValue="">
                               <option value="" disabled>-- Pilih Posisi --</option>
-                              <option value="developer">Web / App Developer</option>
-                              <option value="network">Network / SysAdmin</option>
+                              <option value="developer">Web & App Developer</option>
+                              <option value="network">Network & SysAdmin</option>
                               <option value="multimedia">Multimedia & Sosmed</option>
+                              <option value="security">Cyber Security & Sandi</option>
+                              <option value="analyst">Data Analyst & GIS</option>
+                              <option value="uiux">UI/UX & Product Design</option>
+                              <option value="pr">Humas & Public Relations</option>
+                              <option value="admin">IT Admin & Digital Service</option>
                             </select>
                           </div>
                           <div className="md:col-span-2">
@@ -156,7 +173,39 @@ export default function Magang() {
                         Silakan masukkan Nomor Tiket atau Email yang Anda daftarkan untuk melihat status permohonan terkini.
                       </p>
                       
-                      <form className="max-w-md mx-auto" onSubmit={(e) => { e.preventDefault(); alert("Status Pengajuan: Sedang dalam proses review."); }}>
+                      <form className="max-w-md mx-auto" onSubmit={(e) => { 
+                        e.preventDefault(); 
+                        const rand = Math.random();
+                        if (rand < 0.25) {
+                          setPopupConfig({
+                            isOpen: true,
+                            type: 'process',
+                            title: 'Sedang Diproses',
+                            message: 'Status Pengajuan: Sedang dalam proses review oleh Tim SDM Diskominfo Kota Bogor.\n\nMohon menunggu informasi selanjutnya.'
+                          });
+                        } else if (rand < 0.5) {
+                          setPopupConfig({
+                            isOpen: true,
+                            type: 'success',
+                            title: 'Permohonan Diterima',
+                            message: 'Selamat, permohonan magang Anda telah Disetujui!\n\nSurat balasan (penerimaan magang) sudah dikirimkan melalui alamat email Anda.'
+                          });
+                        } else if (rand < 0.75) {
+                          setPopupConfig({
+                            isOpen: true,
+                            type: 'error',
+                            title: 'Permohonan Ditolak',
+                            message: 'Maaf, permohonan magang Anda saat ini belum dapat kami terima.\n\nAlasan penolakan telah dikirimkan secara detail melalui alamat email Anda.'
+                          });
+                        } else {
+                          setPopupConfig({
+                            isOpen: true,
+                            type: 'not-found',
+                            title: 'Tiket Tidak Ditemukan',
+                            message: 'Maaf, nomor tiket yang Anda masukkan tidak valid atau tidak ditemukan dalam sistem kami.'
+                          });
+                        }
+                      }}>
                         <div className="mb-6">
                           <input type="text" className="w-full text-center text-xl font-bold tracking-widest bg-slate-50 border border-slate-200 rounded-xl px-4 py-4 text-slate-800 focus:outline-none focus:border-sky-500 focus:ring-4 focus:ring-sky-500/10 transition-all uppercase" placeholder="TKT-XXXXX / EMAIL" required />
                         </div>
@@ -184,6 +233,14 @@ export default function Magang() {
           </div>
         </div>
       </div>
+
+      <PopupModal 
+        isOpen={popupConfig.isOpen}
+        onClose={closePopup}
+        type={popupConfig.type}
+        title={popupConfig.title}
+        message={popupConfig.message}
+      />
       <Footer />
     </>
   );
