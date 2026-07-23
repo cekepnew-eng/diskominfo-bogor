@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Konfigurasi instance axios dengan URL dasar dari API Laravel Anda.
 const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://adm-diskominfo.kotabogor.go.id/api',
   headers: {
     'Content-Type': 'application/json',
   },

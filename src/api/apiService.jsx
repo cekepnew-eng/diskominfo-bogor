@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Konfigurasi base URL untuk API Laravel Anda
-const API_URL = import.meta.env.VITE_API_BASE_URL; // Sesuaikan jika port atau URL berbeda
+const API_URL = import.meta.env.VITE_API_BASE_URL || "https://adm-diskominfo.kotabogor.go.id/api";
 
 const apiClient = axios.create({
   baseURL: API_URL,

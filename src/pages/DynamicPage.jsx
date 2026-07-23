@@ -15,7 +15,8 @@ import {
 } from "lucide-react";
 import SecondaryPageTemplate from "../ui/PageLayout";
 
-const API_URL = import.meta.env.VITE_API_BASE_URL;
+const API_URL = import.meta.env.VITE_API_BASE_URL || "https://adm-diskominfo.kotabogor.go.id/api";
+const STORAGE_DEFAULT_URL = "https://adm-diskominfo.kotabogor.go.id/storage";
 
 const fetchPages = async ({ queryKey }) => {
   const [_key, menuId, page, search] = queryKey;
@@ -76,7 +77,7 @@ const ListView = ({ data, onPreview }) => (
             <button
               type="button"
               onClick={() => {
-                const storageBase = import.meta.env.VITE_API_STORAGE_URL; 
+                const storageBase = import.meta.env.VITE_API_STORAGE_URL || STORAGE_DEFAULT_URL; 
                 let finalUrl = "";
                 if (item.dokumen_url.startsWith('http')) {
                   finalUrl = item.dokumen_url;
@@ -91,7 +92,7 @@ const ListView = ({ data, onPreview }) => (
               <Eye size={16} /> Lihat
             </button>
             <a
-              href={item.dokumen_url.startsWith('http') ? item.dokumen_url : `${import.meta.env.VITE_API_STORAGE_URL}/${item.dokumen_url.startsWith('/') ? item.dokumen_url.substring(1) : item.dokumen_url}`}
+              href={item.dokumen_url.startsWith('http') ? item.dokumen_url : `${import.meta.env.VITE_API_STORAGE_URL || STORAGE_DEFAULT_URL}/${item.dokumen_url.startsWith('/') ? item.dokumen_url.substring(1) : item.dokumen_url}`}
               download target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-white bg-cyan-700 rounded-lg hover:bg-cyan-800 transition-colors"
             >

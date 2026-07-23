@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import SecondaryPageTemplate from "../ui/PageLayout";
 
-const API_URL = import.meta.env.VITE_API_BASE_URL;
+const API_URL = import.meta.env.VITE_API_BASE_URL || "https://adm-diskominfo.kotabogor.go.id/api";
 
 const fetchVisiMisi = async () => {
   const response = await axios.get(`${API_URL}/statis-pages/visi-misi`);

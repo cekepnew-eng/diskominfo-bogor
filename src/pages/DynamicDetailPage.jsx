@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import SecondaryPageTemplate from "../ui/PageLayout";
 
-const API_URL = import.meta.env.VITE_API_BASE_URL;
+const API_URL = import.meta.env.VITE_API_BASE_URL || "https://adm-diskominfo.kotabogor.go.id/api";
 
 const DynamicDetailPage = () => {
   const { contentId } = useParams();

@@ -56,7 +56,7 @@ export default function Struktur() {
     { label: "Struktur Organisasi" },
   ];
 
-  const API_URL = import.meta.env.VITE_API_BASE_URL;
+  const API_URL = import.meta.env.VITE_API_BASE_URL || "https://adm-diskominfo.kotabogor.go.id/api";
 
   // React Query fetch
   const { data: strukturData, isLoading, isError, error } = useQuery({
