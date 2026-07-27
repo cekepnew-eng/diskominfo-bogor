@@ -24,7 +24,7 @@ export default function Navbar() {
   const location = useLocation();
   const navRef = useRef(null);
 
-  const isHome = location.pathname === "/" || location.pathname === "/penelitian" || location.pathname === "/submit-penelitian" || location.pathname === "/magang" || location.pathname === "/daftar-jurnal" || location.pathname === "/pengajuan-tte";
+  const isHome = location.pathname === "/" || location.pathname === "/penelitian" || location.pathname === "/submit-penelitian" || location.pathname === "/magang" || location.pathname === "/daftar-jurnal" || location.pathname === "/pengajuan-tte" || location.pathname === "/tanda-tangan" || location.pathname === "/verifikasi-pdf";
 
   useEffect(() => {
     const checkScreenSize = () => setIsMobile(window.innerWidth < 768);
@@ -261,6 +261,16 @@ export default function Navbar() {
                 Daftar Komitmen
               </Link>
             </div>
+
+            {/* 5. VERIFIKASI PDF (TANDA TANGAN) */}
+            <div className="flex items-center pl-2">
+              <Link 
+                to="/tanda-tangan" 
+                className="flex items-center justify-center px-4 py-2 text-sm font-bold text-white bg-blue-600 rounded-xl shadow-[0_4px_12px_rgba(37,99,235,0.35)] hover:bg-blue-700 hover:shadow-[0_6px_16px_rgba(37,99,235,0.45)] hover:-translate-y-0.5 transition-all duration-300"
+              >
+                <span>Verifikasi PDF</span>
+              </Link>
+            </div>
           </div>
 
           <div className="md:hidden">
@@ -332,6 +342,17 @@ export default function Navbar() {
             >
               Daftar Komitmen
             </Link>
+
+            {/* Link Manual untuk Verifikasi PDF di Mobile */}
+            <div className="pt-2">
+              <Link 
+                to="/tanda-tangan" 
+                onClick={closeMenu} 
+                className="flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white text-lg font-bold py-3 px-4 rounded-xl shadow-lg transition-all"
+              >
+                <span>Verifikasi PDF</span>
+              </Link>
+            </div>
           </div>
         </div>
       )}

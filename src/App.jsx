@@ -26,6 +26,7 @@ import SubmitPenelitian from "./pages/Submit-Penelitian";
 import Magang from "./pages/Magang";
 import DaftarJurnal from "./pages/Daftar-Jurnal";
 import PengajuanTte from "./pages/PengajuanTte";
+import TandaTanganPage from "./pages/Tanda-TanganPage";
 import ScrollToTop from "./components/ScrollToTop";
 
 // =================================================================
@@ -89,6 +90,8 @@ function App() {
         <Route path="/magang" element={<Magang />} />
         <Route path="/daftar-jurnal" element={<DaftarJurnal />} />
         <Route path="/pengajuan-tte" element={<PengajuanTte />} />
+        <Route path="/tanda-tangan" element={<TandaTanganPage />} />
+        <Route path="/verifikasi-pdf" element={<TandaTanganPage />} />
 
         {/* HALAMAN DINAMIS */}
         <Route path="/page/:menuId" element={<DynamicPage />} />
