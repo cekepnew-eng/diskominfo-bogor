@@ -24,7 +24,7 @@ export default function Navbar() {
   const location = useLocation();
   const navRef = useRef(null);
 
-  const isHome = location.pathname === "/" || location.pathname === "/penelitian" || location.pathname === "/submit-penelitian" || location.pathname === "/magang" || location.pathname === "/daftar-jurnal";
+  const isHome = location.pathname === "/" || location.pathname === "/penelitian" || location.pathname === "/submit-penelitian" || location.pathname === "/magang" || location.pathname === "/daftar-jurnal" || location.pathname === "/pengajuan-tte";
 
   useEffect(() => {
     const checkScreenSize = () => setIsMobile(window.innerWidth < 768);
@@ -235,6 +235,13 @@ export default function Navbar() {
                               >
                                 <span className="transition-all duration-300 transform group-hover:translate-x-1">Formulir Magang</span>
                               </Link>
+                              <Link 
+                                to="/pengajuan-tte" 
+                                onClick={closeMenu} 
+                                className="group flex items-center w-full px-4 py-2.5 text-sm text-gray-700 transition-all duration-300 hover:bg-cyan-50 hover:text-cyan-700 font-medium"
+                              >
+                                <span className="transition-all duration-300 transform group-hover:translate-x-1">Formulir TTE</span>
+                              </Link>
                             </div>
                           </div>
                         )}
@@ -307,6 +314,7 @@ export default function Navbar() {
                             <Link to="/daftar-jurnal" onClick={closeMenu} className="block text-white py-2">Daftar Jurnal</Link>
                             <Link to="/submit-penelitian" onClick={closeMenu} className="block text-white py-2">Formulir Penelitian</Link>
                             <Link to="/magang" onClick={closeMenu} className="block text-white py-2">Formulir Magang</Link>
+                            <Link to="/pengajuan-tte" onClick={closeMenu} className="block text-white py-2">Formulir TTE</Link>
                           </div>
                         )}
                       </div>

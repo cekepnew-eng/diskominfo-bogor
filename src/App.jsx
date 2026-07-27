@@ -25,6 +25,7 @@ import Penelitian from "./pages/penelitian";
 import SubmitPenelitian from "./pages/Submit-Penelitian";
 import Magang from "./pages/Magang";
 import DaftarJurnal from "./pages/Daftar-Jurnal";
+import PengajuanTte from "./pages/PengajuanTte";
 import ScrollToTop from "./components/ScrollToTop";
 
 // =================================================================
@@ -87,6 +88,7 @@ function App() {
         <Route path="/submit-penelitian" element={<SubmitPenelitian />} />
         <Route path="/magang" element={<Magang />} />
         <Route path="/daftar-jurnal" element={<DaftarJurnal />} />
+        <Route path="/pengajuan-tte" element={<PengajuanTte />} />
 
         {/* HALAMAN DINAMIS */}
         <Route path="/page/:menuId" element={<DynamicPage />} />
