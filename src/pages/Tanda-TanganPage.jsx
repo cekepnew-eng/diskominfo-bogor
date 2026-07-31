@@ -275,16 +275,13 @@ export default function TandaTanganPage() {
         <div className="container mx-auto px-4 max-w-6xl relative z-10">
           
           {/* Hero Header */}
-          <div className="mb-12 text-center">
+          <div className="mb-10 text-center">
             <span className="inline-block bg-sky-100 text-sky-600 px-4 py-1.5 rounded-full font-bold text-xs mb-4 uppercase tracking-wider shadow-xs">
               Layanan Keamanan Siber & Kriptografi
             </span>
-            <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">
+            <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
               Verifikasi <span className="text-sky-500">Tanda Tangan Digital</span>
             </h1>
-            <p className="text-slate-500 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
-              Periksa keaslian, integritas, dan validitas sertifikat elektronik pada dokumen PDF Anda secara instan dan aman sesuai standar BSrE - BSSN.
-            </p>
           </div>
 
           {/* Upload Section - Disembunyikan saat ada hasil */}
@@ -303,12 +300,9 @@ export default function TandaTanganPage() {
                 <div className="w-20 h-20 bg-sky-50 text-sky-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-inner transition-transform duration-300 group-hover:scale-110">
                   <Upload className="w-10 h-10" />
                 </div>
-                <h3 className="text-lg md:text-xl font-extrabold text-slate-900 mb-2">
+                <h3 className="text-lg md:text-xl font-extrabold text-slate-900 mb-6">
                   Pilih atau Drag & Drop dokumen PDF Anda
                 </h3>
-                <p className="text-slate-500 text-sm mb-8 max-w-md mx-auto leading-relaxed">
-                  Mendukung pemrosesan hingga 5 dokumen sekaligus untuk pemeriksaan sertifikat digital secara cepat dan akurat.
-                </p>
                 <button
                   type="button"
                   onClick={handleBrowseClick}

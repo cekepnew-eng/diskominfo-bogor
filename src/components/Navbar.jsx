@@ -24,7 +24,7 @@ export default function Navbar() {
   const location = useLocation();
   const navRef = useRef(null);
 
-  const isHome = location.pathname === "/" || location.pathname === "/penelitian" || location.pathname === "/submit-penelitian" || location.pathname === "/magang" || location.pathname === "/daftar-jurnal" || location.pathname === "/pengajuan-tte" || location.pathname === "/tanda-tangan" || location.pathname === "/verifikasi-pdf";
+  const isHome = location.pathname === "/" || location.pathname === "/home" || location.pathname === "/penelitian" || location.pathname === "/submit-penelitian" || location.pathname === "/magang" || location.pathname === "/daftar-jurnal" || location.pathname === "/pengajuan-tte" || location.pathname === "/tanda-tangan" || location.pathname === "/verifikasi-pdf";
 
   useEffect(() => {
     const checkScreenSize = () => setIsMobile(window.innerWidth < 768);
@@ -145,7 +145,7 @@ export default function Navbar() {
           <div className="items-center hidden space-x-2 md:flex h-full">
             {/* 1. BERANDA */}
             <div className="flex items-center">
-              <Link to="/" className={linkClasses(location.pathname === "/")}>
+              <Link to="/home" className={linkClasses(location.pathname === "/home" || location.pathname === "/")}>
                 Beranda
               </Link>
             </div>
@@ -283,7 +283,7 @@ export default function Navbar() {
       {isMenuOpen && (
         <div className="fixed inset-0 z-40 bg-cyan-600 md:hidden">
           <div className="h-screen pt-20 overflow-y-auto px-6 py-8 space-y-3">
-            <Link to="/" onClick={closeMenu} className="block text-white text-lg font-semibold py-3">Beranda</Link>
+            <Link to="/home" onClick={closeMenu} className="block text-white text-lg font-semibold py-3">Beranda</Link>
             
             {!isLoading && menuData
               .filter(link => link.nama.toLowerCase() !== "pakta integritas") // Menghapus menu rahasia dari list

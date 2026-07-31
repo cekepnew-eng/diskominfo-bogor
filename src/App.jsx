@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import AccessibilityWidget from "./ui/AccessibilityWidget";
 import FloatingIconBar from "./components/FloatinIcons";
 import HomePage from "./pages/home";
+import LandingPage from "./pages/LandingPage";
 import VisiMisi from "./pages/VisiMisi";
 import Sejarah from "./pages/Sejarah";
 import Struktur from "./pages/Struktur";
@@ -43,7 +44,8 @@ function App() {
       <ScrollToTop />
       <Routes>
         {/* Beranda */}
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/home" element={<HomePage />} />
 
         {/* Profil */}
         <Route path="/profil" element={<ProfilePage />} />

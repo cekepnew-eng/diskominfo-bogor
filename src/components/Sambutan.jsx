@@ -32,15 +32,15 @@ export default function SambutanRedesign() {
             >
               <div className="p-4 text-center transition-all duration-300 bg-white border shadow-sm hover:shadow-md rounded-xl">
                <img
-  src="/rudiyana.jpg"
-  alt="Kepala Dinas Rudiyana"
+  src="/ICEU PUJIATI, S.H, M.M.jpeg"
+  alt="Plt. Kepala Dinas Iceu Pujiati"
   className="object-cover object-top mx-auto mb-4 border-2 rounded-lg shadow-sm w-48 h-64 border-cyan-100"
 />
 
                 <h2 className="text-base font-semibold text-cyan-900">
-                  Rudiyana, S.STP., M.Sc
+                  ICEU PUJIATI, S.H, M.M
                 </h2>
-                <p className="text-xs text-gray-600">Kepala Dinas</p>
+                <p className="text-xs text-gray-600">Plt. Kepala Dinas</p>
                 <p className="text-xs text-gray-500">Diskominfo Kota Bogor</p>
               </div>
             </motion.div>
