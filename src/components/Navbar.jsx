@@ -27,7 +27,7 @@ export default function Navbar() {
   const isHome = location.pathname === "/" || location.pathname === "/home" || location.pathname === "/penelitian" || location.pathname === "/submit-penelitian" || location.pathname === "/magang" || location.pathname === "/daftar-jurnal" || location.pathname === "/pengajuan-tte" || location.pathname === "/tanda-tangan" || location.pathname === "/verifikasi-pdf";
 
   useEffect(() => {
-    const checkScreenSize = () => setIsMobile(window.innerWidth < 768);
+    const checkScreenSize = () => setIsMobile(window.innerWidth < 1024);
     checkScreenSize();
     window.addEventListener("resize", checkScreenSize);
     return () => window.removeEventListener("resize", checkScreenSize);
@@ -142,7 +142,7 @@ export default function Navbar() {
             <img src={logoColor} alt="Logo Kominfo" className="w-auto transition-all duration-300 h-14 hover:scale-105" />
           </Link>
 
-          <div className="items-center hidden space-x-2 md:flex h-full">
+          <div className="items-center hidden space-x-2 lg:flex h-full">
             {/* 1. BERANDA */}
             <div className="flex items-center">
               <Link to="/home" className={linkClasses(location.pathname === "/home" || location.pathname === "/")}>
@@ -199,7 +199,14 @@ export default function Navbar() {
                         onMouseEnter={() => handleMouseEnter('layanan-publik')} 
                         onMouseLeave={handleMouseLeave}
                       >
-                        <button className={linkClasses(location.pathname === "/penelitian", true)}>
+                         <button className={linkClasses(
+                           location.pathname === "/penelitian" || 
+                           location.pathname === "/daftar-jurnal" || 
+                           location.pathname === "/submit-penelitian" || 
+                           location.pathname === "/magang" || 
+                           location.pathname === "/pengajuan-tte",
+                           true
+                         )}>
                           <ChevronDown className={clsx("w-4 h-4 mr-1 transition-transform duration-300", activeSubmenu === 'layanan-publik' ? "-rotate-90" : "")} />
                           Layanan Publik
                         </button>
@@ -273,7 +280,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className={mobileButtonClasses}>{isMenuOpen ? <X size={24} /> : <Menu size={24} />}</button>
           </div>
         </div>
@@ -281,7 +288,7 @@ export default function Navbar() {
 
       {/* MOBILE MENU */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-cyan-600 md:hidden">
+        <div className="fixed inset-0 z-40 bg-cyan-600 lg:hidden">
           <div className="h-screen pt-20 overflow-y-auto px-6 py-8 space-y-3">
             <Link to="/home" onClick={closeMenu} className="block text-white text-lg font-semibold py-3">Beranda</Link>
             

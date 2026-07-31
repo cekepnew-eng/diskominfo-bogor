@@ -69,8 +69,8 @@ export default function DaftarJurnal() {
             </form>
           </div>
 
-          {/* Table Container */}
-          <div className="bg-white rounded-[12px] shadow-[0_4px_15px_rgba(0,0,0,0.05)] overflow-hidden">
+          {/* Desktop Table View */}
+          <div className="hidden lg:block bg-white rounded-[12px] shadow-[0_4px_15px_rgba(0,0,0,0.05)] overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full border-collapse min-w-[800px]">
                 <thead className="bg-[#1e293b] text-white">
@@ -117,6 +117,44 @@ export default function DaftarJurnal() {
                 </tbody>
               </table>
             </div>
+          </div>
+
+          {/* Mobile & Tablet Card View */}
+          <div className="lg:hidden space-y-4">
+            {filteredJurnal.length > 0 ? (
+              filteredJurnal.map((item, index) => (
+                <div key={item.id} className="bg-white rounded-2xl p-5 shadow-[0_4px_15px_rgba(0,0,0,0.02)] border border-slate-200/60 flex flex-col gap-3.5 hover:border-blue-200 hover:shadow-[0_4px_20px_rgba(59,130,246,0.05)] transition-all">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-sky-600 bg-sky-50 px-3 py-1.5 rounded-full">
+                      Jurnal #{index + 1}
+                    </span>
+                  </div>
+                  
+                  <h3 className="font-bold text-slate-800 text-[0.95rem] leading-relaxed">
+                    {item.judul}
+                  </h3>
+                  
+                  <div className="flex items-center gap-2 text-slate-500 text-xs mt-1 pb-3 border-b border-slate-100">
+                    <span className="font-semibold text-slate-400">Penulis:</span>
+                    <span className="text-slate-600">{item.penulis}</span>
+                  </div>
+                  
+                  <div className="flex justify-end pt-1">
+                    <button 
+                      onClick={() => alert('Abstrak belum tersedia secara publik.')}
+                      className="flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all w-full"
+                    >
+                      <FileText size={16} />
+                      Lihat Jurnal
+                    </button>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="bg-white rounded-2xl p-10 text-center text-slate-500 border border-slate-200/60">
+                Tidak ada jurnal yang sesuai dengan pencarian Anda.
+              </div>
+            )}
           </div>
 
           {/* Pagination */}
