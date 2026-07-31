@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
     const [time, setTime] = useState('00:00:00');
@@ -389,18 +390,19 @@ const LandingPage = () => {
                 /* ═══════════ RESPONSIVE ═══════════ */
                 @media (max-width: 1200px) {
                     .grid-container { grid-template-columns: repeat(3, 1fr); }
-                    .hero { padding: 3rem 3rem 2rem; }
                 }
 
                 @media (max-width: 900px) {
-                    .grid-container { grid-template-columns: repeat(2, 1fr); padding: 0 2rem 4rem; }
-                    .hero { padding: 2rem 2rem 1.5rem; }
-                    .landing-nav { padding: 1rem 2rem; flex-wrap: wrap; }
+                    .grid-container { grid-template-columns: repeat(2, 1fr); padding: 0 2rem; margin-bottom: 2rem; overflow-y: visible; }
+                    .landing-wrapper { height: auto; min-height: 100vh; overflow-y: auto; }
+                    .landing-nav { flex-wrap: wrap; padding: 1rem 2rem; }
                     .sys-status { margin-top: 1rem; width: 100%; justify-content: space-between; }
                 }
                 
                 @media (max-width: 600px) {
-                    .grid-container { grid-template-columns: 1fr; }
+                    .grid-container { grid-template-columns: 1fr; padding: 0 1.5rem; }
+                    .hero { padding: 1.5rem 1.5rem 1rem; }
+                    .landing-nav { padding: 1rem 1.5rem; }
                     .sys-status { flex-wrap: wrap; }
                     .status-pill { flex: 1 1 auto; justify-content: center; }
                 }
@@ -494,13 +496,13 @@ const LandingPage = () => {
                 <div className="ambient-bg"></div>
 
                 <nav className="landing-nav">
-                    <div className="brand">
+                    <Link to="/home" className="brand" style={{ textDecoration: 'none' }}>
                         <img src="/LOGO BIRU.webp" alt="Bogor Logo" onError={(e) => { e.target.style.display = 'none'; }} />
                         <div className="brand-info">
-                            <h1>Portal Layanan Diskominfo</h1>
+                            <h1>Portal Layanan DISKOMINFO</h1>
                             <span>Pemerintah Kota Bogor</span>
                         </div>
-                    </div>
+                    </Link>
                     
                     <div className="sys-status">
                         <div className="status-pill">
@@ -519,7 +521,7 @@ const LandingPage = () => {
                 </nav>
 
                 <header className="hero animate-up">
-                    <h2><strong>Portal Layanan</strong> Diskominfo</h2>
+                    <h2><strong>Portal Layanan</strong> Dinas Komunikasi dan Informatika Kota Bogor</h2>
                     <p>Akses cepat ke dashboard, data statistik, peta digital, command center, CCTV, call center, serta berbagai aplikasi dan layanan publik Pemerintah Kota Bogor melalui satu portal yang terintegrasi.</p>
                 </header>
 
@@ -537,7 +539,7 @@ const LandingPage = () => {
                             <p className="card-desc">Menyediakan akses ke portal resmi Pemerintah Kota Bogor dan media informasi publik yang dikelola oleh Diskominfo.</p>
                             <div className="op-list">
                                 <a href="https://kotabogor.go.id/" target="_blank" rel="noopener noreferrer" className="op-item"><i className="ph-fill ph-globe-hemisphere-west"></i> Website Kota Bogor <i className="ph ph-arrow-up-right" style={{ marginLeft: 'auto' }}></i></a>
-                                <a href="https://kominfo.kotabogor.go.id/" target="_blank" rel="noopener noreferrer" className="op-item"><i className="ph-fill ph-info"></i> Website Diskominfo <i className="ph ph-arrow-up-right" style={{ marginLeft: 'auto' }}></i></a>
+                                <Link to="/home" className="op-item"><i className="ph-fill ph-info"></i> Website Diskominfo <i className="ph ph-arrow-right" style={{ marginLeft: 'auto' }}></i></Link>
                                 <a href="https://ppid.kotabogor.go.id/" target="_blank" rel="noopener noreferrer" className="op-item"><i className="ph-fill ph-folder-open"></i> PPID <i className="ph ph-arrow-up-right" style={{ marginLeft: 'auto' }}></i></a>
                             </div>
                         </div>
@@ -588,7 +590,7 @@ const LandingPage = () => {
                             <p className="card-desc">Mendukung pelaksanaan administrasi, tata kelola, dan operasional internal Pemerintah Kota Bogor agar lebih efektif dan efisien.</p>
                             <div className="op-list">
                                 <a href="https://tnd.kotabogor.go.id/" target="_blank" rel="noopener noreferrer" className="op-item"><i className="ph-fill ph-file-text"></i> TNDE <i className="ph ph-arrow-up-right" style={{ marginLeft: 'auto' }}></i></a>
-                                <a href="https://presensimetting.kotabogor.go.id/" target="_blank" rel="noopener noreferrer" className="op-item"><i className="ph-fill ph-users"></i> Presensi Meeting <i className="ph ph-arrow-up-right" style={{ marginLeft: 'auto' }}></i></a>
+                                <a href="https://presensimeeting.kotabogor.go.id/" target="_blank" rel="noopener noreferrer" className="op-item"><i className="ph-fill ph-users"></i> Presensi Meeting <i className="ph ph-arrow-up-right" style={{ marginLeft: 'auto' }}></i></a>
                                 <a href="https://digitaloffice.kotabogor.go.id/" target="_blank" rel="noopener noreferrer" className="op-item"><i className="ph-fill ph-briefcase"></i> TPTK <i className="ph ph-arrow-up-right" style={{ marginLeft: 'auto' }}></i></a>
                             </div>
                         </div>
@@ -607,7 +609,7 @@ const LandingPage = () => {
                             <div className="op-list">
                                 <a href="https://smartcity.kotabogor.go.id/" target="_blank" rel="noopener noreferrer" className="op-item"><i className="ph-fill ph-device-mobile"></i> Website Smart City <i className="ph ph-arrow-up-right" style={{ marginLeft: 'auto' }}></i></a>
                                 <a href="https://lab-kms.kotabogor.go.id/" target="_blank" rel="noopener noreferrer" className="op-item"><i className="ph-fill ph-book-open"></i> Manajemen Pengetahuan <i className="ph ph-arrow-up-right" style={{ marginLeft: 'auto' }}></i></a>
-                                <a href="https://sso.kotabogor.go.id/" target="_blank" rel="noopener noreferrer" className="op-item"><i className="ph-fill ph-key"></i> SSO-TP2DD <i className="ph ph-arrow-up-right" style={{ marginLeft: 'auto' }}></i></a>
+                                <a href="https://sso-bsw.kotabogor.go.id/" target="_blank" rel="noopener noreferrer" className="op-item"><i className="ph-fill ph-key"></i> SSO-TP2DD <i className="ph ph-arrow-up-right" style={{ marginLeft: 'auto' }}></i></a>
                             </div>
                         </div>
                     </div>
@@ -615,7 +617,7 @@ const LandingPage = () => {
                 </main>
 
                 <footer className="landing-footer">
-                    &copy; 2026 Diskominfo Kota Bogor
+                    &copy; 2026 Dinas Komunikasi dan Informatika Kota Bogor
                 </footer>
             </div>
 

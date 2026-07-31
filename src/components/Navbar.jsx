@@ -193,7 +193,7 @@ export default function Navbar() {
                     </div>
 
                     {/* LAYANAN PUBLIK (HARDCODED) DITAMPILKAN SETELAH PUBLIKASI */}
-                    {isPublikasi && (
+                    {false && isPublikasi && (
                       <div 
                         className="relative flex items-center"
                         onMouseEnter={() => handleMouseEnter('layanan-publik')} 
@@ -269,7 +269,8 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* 5. VERIFIKASI PDF (TANDA TANGAN) */}
+            {/* 5. VERIFIKASI PDF (TANDA TANGAN) - DISEMBUNYIKAN SEMENTARA */}
+            {/*
             <div className="flex items-center pl-2">
               <Link 
                 to="/tanda-tangan" 
@@ -278,6 +279,7 @@ export default function Navbar() {
                 <span>Verifikasi PDF</span>
               </Link>
             </div>
+            */}
           </div>
 
           <div className="lg:hidden">
@@ -319,7 +321,7 @@ export default function Navbar() {
                     </div>
 
                     {/* Link Manual untuk Layanan Publik di Mobile setelah publikasi */}
-                    {isPublikasi && (
+                    {false && isPublikasi && (
                       <div>
                         <button onClick={() => handleMobileSubmenuToggle('layanan-publik')} className="flex items-center justify-between w-full text-white text-lg font-semibold py-3 border-t border-white/20">
                           Layanan Publik
@@ -350,7 +352,8 @@ export default function Navbar() {
               Daftar Komitmen
             </Link>
 
-            {/* Link Manual untuk Verifikasi PDF di Mobile */}
+            {/* Link Manual untuk Verifikasi PDF di Mobile - DISEMBUNYIKAN SEMENTARA */}
+            {/*
             <div className="pt-2">
               <Link 
                 to="/tanda-tangan" 
@@ -360,6 +363,7 @@ export default function Navbar() {
                 <span>Verifikasi PDF</span>
               </Link>
             </div>
+            */}
           </div>
         </div>
       )}
